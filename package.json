@@ -1,0 +1,16 @@
+{
+  "name": "com.pi.subsystems",
+  "version": "0.1.0",
+  "description": "Base classes for scoped singletons",
+  "displayName": "Pi Subsystems",
+  "unity": "2022.3",
+  "author": {
+    "name": "Josie Thompson",
+    "url": "https://josiest.github.io"
+  },
+  "keywords": [
+    "singleton",
+    "subsystem",
+    "manager"
+  ]
+}
