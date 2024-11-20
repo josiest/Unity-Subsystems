@@ -27,5 +27,14 @@ namespace Pi.Subsystems
             return Assembly.GetAssembly(typeof(T)).GetTypes()
                 .Where(type => type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(T)));
         }
+
+        /** Get the method for determining if a subsystem should be loaded */
+        public static MethodInfo ShouldLoadMethod(Type type)
+        {
+            var shouldLoadMethod = type.GetMethod("ShouldLoad", BindingFlags.Static);
+            if (shouldLoadMethod == null) { return null; }
+            if (shouldLoadMethod.ReturnType != typeof(bool)) { return null; }
+            return shouldLoadMethod;
+        }
     }
 }

@@ -25,7 +25,16 @@ namespace Pi.Subsystems
             DontDestroyOnLoad(this);
             foreach (var subsystemType in SubsystemLocators.GetAllSubsystemTypes<GameSubsystem>())
             {
-                gameObject.AddComponent(subsystemType);
+                bool shouldLoad = true;
+                var shouldLoadMethod = SubsystemLocators.ShouldLoadMethod(subsystemType);
+                if (shouldLoadMethod != null && shouldLoadMethod.GetParameters().Length == 0)
+                {
+                    shouldLoad = shouldLoadMethod.Invoke(null, null) is true;
+                }
+                if (shouldLoad)
+                {
+                    gameObject.AddComponent(subsystemType);
+                }
             }
         }
         private void OnDestroy()
