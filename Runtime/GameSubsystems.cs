@@ -18,6 +18,7 @@ namespace Pi.Subsystems
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void OnSubsystemRegistration()
         {
+            Debug.Log("Creating Game Subsystem Locator");
             Instance = SubsystemLocators.CreateInstance<GameSubsystems>();
         }
         private void Awake()
