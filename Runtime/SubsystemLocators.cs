@@ -24,7 +24,8 @@ namespace Pi.Subsystems
         /** Get all concrete subtypes of a kind of subsystem */
         public static IEnumerable<Type> GetAllSubsystemTypes<T>() where T : SubsystemBase
         {
-            return Assembly.GetAssembly(typeof(T)).GetTypes()
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(T)));
         }
 
