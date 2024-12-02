@@ -26,6 +26,11 @@ namespace Pi.Subsystems
         //
         // Public Interface
         //
+        public static T FindOrRegister<T>() where T : SceneSubsystem
+        {
+            var subsystem = Instance?.GetComponent<T>();
+            return subsystem? subsystem : Instance?.gameObject.AddComponent<T>();
+        }
         public static T Find<T>() where T : SceneSubsystem
         {
             return Instance?.GetComponent<T>();

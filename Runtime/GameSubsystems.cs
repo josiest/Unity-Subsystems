@@ -7,6 +7,11 @@ namespace Pi.Subsystems
         //
         // Public Interface
         //
+        public static T FindOrRegister<T>() where T : GameSubsystem
+        {
+            var subsystem = Instance?.GetComponent<T>();
+            return subsystem? subsystem : Instance?.gameObject.AddComponent<T>();
+        }
         public static T Find<T>() where T : GameSubsystem
         {
             return Instance?.GetComponent<T>();
@@ -32,12 +37,12 @@ namespace Pi.Subsystems
                 {
                     shouldLoad = shouldLoadMethod.Invoke(null, null) is true;
                 }
-                if (shouldLoad)
+                if (shouldLoad && !GetComponent(subsystemType))
                 {
                     Debug.Log($"[Pi.Subsystems.Game] Loading Game Subsystem {subsystemType.FullName}");
                     gameObject.AddComponent(subsystemType);
                 }
-                else
+                else if (!shouldLoad)
                 {
                     Debug.Log($"[Pi.Subsystems.Game] Found Game Subsystem {subsystemType.FullName} " +
                                "but it's been specified not to load");
