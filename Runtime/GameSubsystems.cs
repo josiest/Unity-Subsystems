@@ -28,6 +28,7 @@ namespace Pi.Subsystems
         }
         private void Awake()
         {
+            if (Instance != this) { Destroy(this); return; }
             DontDestroyOnLoad(this);
             foreach (var subsystemType in SubsystemLocators.GetAllSubsystemTypes<GameSubsystem>())
             {
