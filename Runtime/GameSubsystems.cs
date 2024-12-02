@@ -34,12 +34,13 @@ namespace Pi.Subsystems
                 }
                 if (shouldLoad)
                 {
-                    Debug.Log($"Loading Game Subsystem {subsystemType.FullName}");
+                    Debug.Log($"[Pi.Subsystems.Game] Loading Game Subsystem {subsystemType.FullName}");
                     gameObject.AddComponent(subsystemType);
                 }
                 else
                 {
-                    Debug.Log($"Found Game Subsystem {subsystemType.FullName} but it's been specified not to load");
+                    Debug.Log($"[Pi.Subsystems.Game] Found Game Subsystem {subsystemType.FullName} " +
+                               "but it's been specified not to load");
                 }
             }
         }
