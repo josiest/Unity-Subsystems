@@ -50,7 +50,9 @@ namespace Pi.Subsystems
         }
         private void Awake()
         {
-            if (Instance != this) { Destroy(this); return; }
+            if (Instance && Instance != this) { Destroy(this); return; }
+            Instance = this;
+
             foreach (var subsystemType in SubsystemLocators.GetAllSubsystemTypes<SceneSubsystem>())
             {
                 bool shouldLoad = true; 
