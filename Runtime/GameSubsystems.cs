@@ -20,10 +20,10 @@ namespace Pi.Subsystems
         //
         // Unity Events
         //
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void OnSubsystemRegistration()
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void BeforeSceneLoad()
         {
-            Debug.Log("Creating Game Subsystem Locator");
+            Debug.Log("[Pi.Subsystems.Game] Creating Game Subsystem Locator");
             Instance = SubsystemLocators.CreateInstance<GameSubsystems>();
         }
         private void Awake()

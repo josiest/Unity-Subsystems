@@ -39,8 +39,8 @@ namespace Pi.Subsystems
         //
         // Unity Events
         //
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void OnSubsystemRegistration()
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void BeforeSceneLoad()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
